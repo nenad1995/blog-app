@@ -3,18 +3,18 @@
     <form @submit.prevent="onSubmit" @reset="reset">
       <div>
         <div>
-          <input type="text" required="required" v-model="post.title" />
+          <input type="text" required="required" minlength="2" v-model="post.title" />
         </div>
         <div>
-          <input type="text" required="required" v-model="post.text" />
+          <input type="text" required="required" maxlength="300" v-model="post.text" />
         </div>
         <div>
           <button  type="submit">
             Submit
           </button> 
-          <button  type="reset">
+          <button type="reset">
             Reset
-          </button> 
+          </button>
         </div>
       </div>
     </form>

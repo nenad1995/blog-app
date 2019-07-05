@@ -1,13 +1,10 @@
 <template>
   <div>
-    <div v-for="post in posts" :key="post.id">
+    <div>
       <h2>{{ post.title }}</h2>
       <div>{{ post.text }}</div>
-      <div>Posted at : {{ post.createdAt }}</div>
       <div>
-        <router-link :to="{ name:'view', params: { id: post.id } }">
-          View Post
-        </router-link>
+        Posted at {{ post.createdAt }}
       </div>
     </div>
   </div>
@@ -17,17 +14,18 @@
 import { posts } from '../services/post-service'
 
 export default {
+  
   data () {
     return {
-      posts: []
+      post: {}
     }
   },
 
-  beforeRouteEnter (to, from, next) {
-    posts.getAll()
+  beforeRouteEnter(to, from, next) {
+    posts.get(to.params.id)
       .then((response) => {
         next((vm) => {
-          vm.posts = response.data
+          vm.post = response.data
         })
       })
   }

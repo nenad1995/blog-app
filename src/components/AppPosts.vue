@@ -5,15 +5,20 @@
       <div>{{ post.text }}</div>
       <div>Posted at : {{ post.createdAt }}</div>
       <div>
-        <router-link :to="{ name:'view', params: { id: post.id } }">
-          View Post
-        </router-link>
-        <router-link :to="{ name:'edit', params: { id: post.id } }">
-          Edit Post
-        </router-link>
-        <button @click="deletePost(post.id, index)">
-          Delete Post
-        </button>
+        <div>
+          <router-link :to="{ name:'view', params: { id: post.id } }">
+            View Post
+          </router-link>
+          <router-link :to="{ name:'edit', params: { id: post.id } }">
+            Edit Post
+          </router-link>
+          <button @click="deletePost(post.id, index)">
+            Delete Post
+          </button>
+        </div>
+        <div>
+          <h3>Number of comments: {{ post.comments.length }}</h3>
+        </div>
       </div>
     </div>
   </div>

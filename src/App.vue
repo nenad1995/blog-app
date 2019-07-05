@@ -8,8 +8,8 @@
             <router-link :to="{ name: 'posts' }">Posts</router-link>
           </li>
           <li>
-          <router-link :to="{ name: 'add' }">Add</router-link>
-        </li>
+            <router-link :to="{ name: 'add' }">Add</router-link>
+          </li>
         </ul>
       </div>
     </nav>

@@ -1,5 +1,7 @@
 <template>
   <form @submit.prevent="onSubmit">
+    <hr />
+    <h3>Add comment</h3>
     <div>
       <div>
         <input required="required" v-model="comment.text" />
@@ -10,6 +12,7 @@
         <button type="submit">
           Submit
         </button>
+        <hr />
       </div>
     </div>
   </form>

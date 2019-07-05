@@ -3,7 +3,7 @@
     <div v-for="(post, index) in posts" :key="post.id">
       <h2>{{ post.title }}</h2>
       <div>{{ post.text }}</div>
-      <div>Posted at : {{ post.createdAt }}</div>
+      <div>Posted at : {{ post.createdAt | formatDate }}</div>
       <div>
         <div>
           <router-link :to="{ name:'view', params: { id: post.id } }">
@@ -26,6 +26,7 @@
 
 <script>
 import { posts } from '../services/post-service'
+import { DateMixin } from '../mixins'
 
 export default {
   data () {
@@ -33,6 +34,8 @@ export default {
       posts: []
     }
   },
+
+  mixins: [ DateMixin ],
 
   methods: {
     deletePost(id, index) {

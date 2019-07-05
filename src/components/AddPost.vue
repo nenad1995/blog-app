@@ -10,7 +10,7 @@
         </div>
         <div>
           <button  type="submit">
-            Submit
+            {{ isEditing ? 'Edit' : 'Submit' }}
           </button> 
           <button type="reset">
             Reset
@@ -34,17 +34,42 @@ export default {
     }
   },
 
+  created() {
+    if (this.$route.params.id) {
+      this.isEditing = true
+      posts.get(this.$route.params.id)
+        .then((response) => {
+          this.post = response.data
+        })
+    }
+  },
+
   methods: {
-    onSubmit () {
+    onSubmit() {
+      if (this.$route.params.id) {
+        this.editPost()
+      } else {
+        this.addPost()
+      }
+    },
+
+    addPost() {
       posts.add(this.post)
         .then((response) => {
           this.$router.push({ name: 'posts' })
         })
     },
 
+    editPost() {
+      posts.update(this.post)
+        .then((response) => {
+          this.$router.push({ name: 'posts' })
+        })
+    },
+
     reset() {
-      this.post.title = '',
-      this.post.text = ''
+      this.post.title = ''
+      this.post.text= ''
     }
   }
 }

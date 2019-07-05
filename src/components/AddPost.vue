@@ -30,7 +30,9 @@ export default {
       post: {
         title: '',
         text: ''
-      }
+      },
+
+      isEditing: false
     }
   },
 

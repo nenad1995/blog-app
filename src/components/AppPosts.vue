@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-for="post in posts" :key="post.id">
+    <div v-for="(post, index) in posts" :key="post.id">
       <h2>{{ post.title }}</h2>
       <div>{{ post.text }}</div>
       <div>Posted at : {{ post.createdAt }}</div>
@@ -11,6 +11,9 @@
         <router-link :to="{ name:'edit', params: { id: post.id } }">
           Edit Post
         </router-link>
+        <button @click="deletePost(post.id, index)">
+          Delete Post
+        </button>
       </div>
     </div>
   </div>
@@ -23,6 +26,15 @@ export default {
   data () {
     return {
       posts: []
+    }
+  },
+
+  methods: {
+    deletePost(id, index) {
+      posts.remove(id)
+        .then((response) => {
+          this.posts.splice(index, 1)
+        })
     }
   },
 
